@@ -18,7 +18,7 @@
   <link rel="icon" type="image/png" href="static/images/robot.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="static/css/index.css">
   <style>:root { --brand: #4f46e5; --violet: #0891b2; --orange: #10b981; }</style>
   <script defer src="static/js/index.js"></script>
@@ -138,11 +138,12 @@
   <section class="band alt" id="benchmarks">
     <div class="wrap">
       <div class="head"><span class="kicker k3">Breadth</span><h2>Meta-World v3 &amp; LIBERO-X</h2></div>
-      <div class="stack-col">
-        <div>
+      <div class="tabset">
+        <div class="tabbar"><div class="segctl" data-tabs><button type="button" data-tab="mw" class="on">Meta-World v3</button><button type="button" data-tab="lx">LIBERO-X</button></div></div>
+        <div class="tabpanel" data-panel="mw">
           <h3 class="sub">Meta-World v3 <small>success (%), 50 tasks</small></h3>
           <div class="table-wrap">
-            <table class="tbl">
+            <table class="tbl" data-chart="7" data-chart-title="Meta-World v3 average success (%)">
               <thead><tr><th>Method</th><th>Venue</th><th>Params</th><th>Easy</th><th>Mid</th><th>Hard</th><th>V.Hard</th><th class="col-avg">Avg.</th></tr></thead>
               <tbody>
                 <tr><th>HarmonyDream</th><td>ICML'24</td><td>77M</td><td>81.0</td><td>91.0</td><td class="second">72.5</td><td>44.5</td><td class="col-avg">72.3</td></tr>
@@ -155,10 +156,10 @@
             </table>
           </div>
         </div>
-        <div>
+        <div class="tabpanel" data-panel="lx">
           <h3 class="sub">LIBERO-X <small>accuracy (%), cumulative severity</small></h3>
           <div class="table-wrap">
-            <table class="tbl">
+            <table class="tbl" data-chart="8" data-chart-title="LIBERO-X average accuracy (%)">
               <thead><tr><th>Method</th><th>Venue</th><th>Params</th><th>L1</th><th>L2</th><th>L3</th><th>L4</th><th>L5</th><th class="col-avg">Avg.</th></tr></thead>
               <tbody>
                 <tr><th>GR00T N1.5</th><td>arXiv'25</td><td>3B</td><td>43.3</td><td>32.9</td><td>18.7</td><td>13.3</td><td>9.7</td><td class="col-avg">23.6</td></tr>
@@ -228,7 +229,7 @@
 
       <h3 class="sub" style="margin-top:2.2rem">Component and interface ablations <small>LIBERO-PRO Spatial</small></h3>
       <div class="table-wrap">
-        <table class="tbl">
+        <table class="tbl" data-chart="7" data-chart-max="1" data-chart-title="Captured selector headroom &eta; (higher is better)">
           <thead><tr><th>Variant</th><th>T<sub>p</sub>/H</th><th>Pair-AUC &uarr;</th><th>NMSE 3/8 &darr;</th><th>AUROC enc. &uarr;</th><th>AUROC pred. &uarr;</th><th>Norm. AP pred. &uarr;</th><th class="col-avg">&eta;</th></tr></thead>
           <tbody>
             <tr class="ours"><th>Full system</th><td>3/8</td><td>0.70</td><td>0.35/0.60</td><td>0.78</td><td>0.72</td><td>1.40</td><td class="col-avg">0.40</td></tr>
