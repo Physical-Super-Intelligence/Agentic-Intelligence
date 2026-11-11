@@ -255,3 +255,5 @@ h1, h2, h3 { font-family: var(--display); color: var(--ink); margin: 0; }
 @media (max-width: 520px) { .videos { grid-template-columns: 1fr; } }
 .stack-col { display: grid; gap: 1.6rem; }
 .stack-col > * { min-width: 0; }
+.tbl tr.grp-row td { text-align: left; font-size: .72rem; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); background: #f8fafc; font-weight: 700; padding-top: .5rem; padding-bottom: .5rem; }
+.tbl tr.muted > * { color: #94a3b8; font-style: italic; }
