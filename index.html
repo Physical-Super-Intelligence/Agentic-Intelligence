@@ -3,1026 +3,327 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!--
-    ============================================================
-    ANONYMITY NOTICE
-
-    The paper (00.main.tex) is currently submitted as "Anonymous Authors".
-    This page is therefore author-blind on purpose: no names, no
-    affiliations, no citation_author tags, no personal links.
-
-    After acceptance / de-anonymization:
-      1. Uncomment the author block in the hero section below.
-      2. Uncomment the citation_author + author meta tags below.
-      3. Fill in the arXiv / PDF / code buttons and drop .is-pending.
-      4. Replace the placeholder BibTeX entry.
-    ============================================================
-  -->
-
-  <!-- Primary Meta Tags -->
-  <meta name="title" content="AGI: Agentic Intelligence and Latent Lookahead for Robust Manipulation">
-  <meta name="description" content="A closed-loop manipulation policy that proposes executable programs, imagines their outcomes in a JEPA-style latent world model, and ranks them before the arm moves. 0.64 average success on LIBERO-PRO and 94.0% on Meta-World.">
-  <meta name="keywords" content="robot manipulation, agentic policy, program synthesis, robot DSL, latent world model, JEPA, verify-then-execute, LIBERO-PRO, LIBERO-X, Meta-World, distribution shift, vision-language-action">
-  <meta name="robots" content="index, follow">
-  <meta name="language" content="English">
-  <!-- <meta name="author" content="TODO: add after de-anonymization"> -->
-
-  <!-- Open Graph / Facebook -->
+  <!-- Anonymous review: no author names, affiliations or personal links until the paper is de-anonymized. -->
+  <title>AGI: Agentic Intelligence and Latent Lookahead for Robust Manipulation</title>
+  <meta name="description" content="AGI proposes candidate robot programs, predicts each one in a program-conditioned latent world model, and ranks them before the arm moves. 0.50/0.49 Position/Task success on LIBERO-PRO Spatial, 94.0% on Meta-World v3, 52.9% on LIBERO-X.">
+  <meta name="theme-color" content="#4f46e5">
+  <link rel="canonical" href="https://physical-super-intelligence.github.io/Agentic-Intelligence/">
   <meta property="og:type" content="article">
   <meta property="og:title" content="AGI: Agentic Intelligence and Latent Lookahead for Robust Manipulation">
-  <meta property="og:description" content="Propose programs, imagine them in latent space, rank them, then execute. 0.50/0.49 Position/Task success on LIBERO-PRO Spatial where OpenVLA and pi-0 score 0.00.">
-  <meta property="og:url" content="https://physical-agi.github.io/Agentic-Intelligence/">
-  <meta property="og:image" content="https://physical-agi.github.io/Agentic-Intelligence/static/images/teaser.png">
-  <meta property="og:image:alt" content="Three paradigms for robot manipulation: VLA models, pixel world models, and the proposed agentic model">
-  <meta property="article:section" content="Robotics">
-  <meta property="article:tag" content="robot manipulation">
-  <meta property="article:tag" content="latent world model">
-  <meta property="article:tag" content="program synthesis">
-
-  <!-- Twitter -->
+  <meta property="og:description" content="Propose programs, predict them in latent space, rank them, then execute.">
+  <meta property="og:url" content="https://physical-super-intelligence.github.io/Agentic-Intelligence/">
+  <meta property="og:image" content="https://physical-super-intelligence.github.io/Agentic-Intelligence/static/images/teaser.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="AGI: Agentic Intelligence and Latent Lookahead for Robust Manipulation">
-  <meta name="twitter:description" content="Propose programs, imagine them in latent space, rank them, then execute. 0.64 average success on LIBERO-PRO.">
-  <meta name="twitter:image" content="https://physical-agi.github.io/Agentic-Intelligence/static/images/teaser.png">
-  <meta name="twitter:image:alt" content="Three paradigms for robot manipulation: VLA models, pixel world models, and the proposed agentic model">
-
-  <!-- Academic / Google Scholar -->
   <meta name="citation_title" content="AGI: Agentic Intelligence and Latent Lookahead for Robust Manipulation">
-  <meta name="citation_conference_title" content="IEEE International Conference on Robotics and Automation (ICRA)">
-  <meta name="citation_publication_date" content="2027">
-  <!-- Author tags intentionally omitted while under anonymous review.
-  <meta name="citation_author" content="TODO">
-  <meta name="citation_pdf_url" content="TODO">
-  -->
-
-  <!-- Additional SEO -->
-  <meta name="theme-color" content="#4f46e5">
-  <meta name="msapplication-TileColor" content="#4f46e5">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <link rel="canonical" href="https://physical-agi.github.io/Agentic-Intelligence/">
-
-  <!-- Preconnect for performance -->
+  <link rel="icon" type="image/png" href="static/images/robot.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://cdn.jsdelivr.net">
-
-  <title>AGI: Agentic Intelligence and Latent Lookahead for Robust Manipulation</title>
-
-  <!-- Favicon and App Icons -->
-  <link rel="icon" type="image/png" href="static/images/robot.png">
-  <link rel="apple-touch-icon" href="static/images/robot.png">
-
-  <!-- Critical CSS - Load synchronously -->
-  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="static/css/index.css">
-
-  <!-- Non-critical CSS - Load asynchronously -->
-  <link rel="preload" href="static/css/fontawesome.all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-
-  <noscript>
-    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  </noscript>
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <!-- Defer non-critical JavaScript -->
-  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <style>:root { --brand: #4f46e5; --violet: #0891b2; --orange: #10b981; }</style>
   <script defer src="static/js/index.js"></script>
-
-  <!-- Structured Data for Academic Papers -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ScholarlyArticle",
-    "headline": "AGI: Agentic Intelligence and Latent Lookahead for Robust Manipulation",
-    "description": "A closed-loop manipulation policy in which a frozen vision-language agent proposes programs in a nine-primitive robot DSL, a Code-to-Token Bridge conditions a JEPA-style latent dynamics model, and a learned verifier ranks imagined trajectories before execution.",
-    "keywords": ["robot manipulation", "program synthesis", "latent world model", "JEPA", "LIBERO-PRO", "Meta-World", "distribution shift"],
-    "abstract": "Robust manipulation under distribution shift requires both grounding the current scene and comparing candidate commitments before execution. A frozen vision-language agent proposes programs in a nine-primitive robot DSL with explicit geometric literals, a Code-to-Token Bridge conditions a JEPA-style latent dynamics model, and a learned verifier ranks imagined trajectories. On LIBERO-PRO Spatial the complete loop reaches 0.50 Position and 0.49 Task success; across Meta-World difficulty splits the system averages 94.0% success.",
-    "isAccessibleForFree": true,
-    "about": [
-      { "@type": "Thing", "name": "Robot Manipulation" },
-      { "@type": "Thing", "name": "World Models" }
-    ]
-  }
-  </script>
 </head>
 <body>
 
-<!-- Sticky section navigation -->
-<nav class="ai-nav" id="ai-nav" aria-label="Section navigation">
-  <div class="ai-nav-inner">
-    <a class="ai-nav-brand" href="#top">Agentic<span>Intelligence</span></a>
-    <button class="ai-nav-toggle" id="ai-nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-      <i class="fas fa-bars"></i>
+<nav class="nav" aria-label="Sections">
+  <div class="nav-inner">
+    <a class="nav-brand" href="#top"><span class="dot" aria-hidden="true"></span>AGI</a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
     </button>
-    <div class="ai-nav-links" id="ai-nav-links">
+    <div class="nav-links" id="nav-links">
       <a href="#real-robot">Real Robot</a>
-      <a href="#results">LIBERO-PRO</a>
-      <a href="#benchmarks">Benchmarks</a>
-      <a href="#ablation">Ablations</a>
-      <a href="#efficiency">Efficiency</a>
+      <a href="#libero-pro">LIBERO-PRO</a>
+      <a href="#benchmarks">Meta-World &amp; LIBERO-X</a>
+      <a href="#ablation">Ablation</a>
+      <a href="#efficiency">Cost</a>
       <a href="#auditability">Auditability</a>
       <a href="#bibtex">BibTeX</a>
     </div>
   </div>
-  <div class="ai-progress" id="ai-progress"></div>
+  <div class="nav-progress" id="nav-progress"></div>
 </nav>
 
-<main id="main-content">
-  <a id="top"></a>
+<main id="top">
 
-  <section class="hero">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered">
-          <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">AGI: Agentic Intelligence and Latent Lookahead for Robust Manipulation</h1>
+  <header class="hero">
+    <div class="wrap hero-inner">
+      <span class="chip">Under review &middot; ICRA 2027</span>
+      <h1 class="hero-title"><span class="grad">AGI</span></h1>
+      <p class="hero-sub">Agentic Intelligence and Latent Lookahead for Robust Manipulation</p>
+      <p class="authors"><span>Anonymous Authors</span></p>
+      <p class="anon">Names, affiliations and code links are withheld during anonymous review.</p>
+      <div class="btns">
+        <a class="btn" href="#real-robot">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>Real-robot videos</a>
+        <a class="btn" href="#bibtex">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 17h4l2-4V7H6v6h3zm8 0h4l2-4V7h-6v6h3z" fill="currentColor"/></svg>BibTeX</a>
+      </div>
 
-            <div class="is-size-5 publication-authors">
-              <span class="author-block">Anonymous Authors</span>
-            </div>
+      <figure class="fig" style="margin-top:2.4rem">
+        <img src="static/images/teaser.png" class="zoom" loading="eager"
+             alt="Three paradigms for robot manipulation: VLA models, pixel world models, and AGI">
+        <figcaption>Three paradigms for robot manipulation, drawn as a conceptual contrast rather than a measured comparison.
+          (a) VLA models map images and language directly to actions. (b) Pixel-predictive world models forecast future frames.
+          (c) AGI predicts the future in the latent space of a program-conditioned world model and ranks complete programs
+          before any motor command.</figcaption>
+      </figure>
 
-            <!--
-              After de-anonymization, replace the author block above with the real
-              names, superscript affiliations, and a corresponding-author dagger.
-              Deliberately not spelled out here: HTML comments are served to anyone
-              who views source, so no identifying text belongs in this file while the
-              paper is under anonymous review.
-            -->
-
-            <div class="ai-venue-badge">Under review &middot; IEEE International Conference on Robotics and Automation (ICRA'27)</div>
-
-            <div class="column has-text-centered">
-              <div class="publication-links">
-                <!-- TODO: swap each .is-pending span for a real <a href="..."> once the link exists. -->
-                <span class="link-block">
-                  <span class="button is-normal is-rounded is-dark is-pending">
-                    <span class="icon"><i class="ai ai-arxiv"></i></span>
-                    <span>arXiv soon</span>
-                  </span>
-                </span>
-
-                <span class="link-block">
-                  <span class="button is-normal is-rounded is-dark is-pending">
-                    <span class="icon"><i class="fas fa-file-pdf"></i></span>
-                    <span>Paper soon</span>
-                  </span>
-                </span>
-
-                <span class="link-block">
-                  <span class="button is-normal is-rounded is-dark is-pending">
-                    <span class="icon"><i class="fab fa-github"></i></span>
-                    <span>Code soon</span>
-                  </span>
-                </span>
-
-                <span class="link-block">
-                  <a href="#bibtex" class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon"><i class="fas fa-quote-left"></i></span>
-                    <span>Cite</span>
-                  </a>
-                </span>
-              </div>
-              <p class="ai-anon-note">
-                Author names, affiliations and code links are withheld while the paper is under anonymous review.
-              </p>
-            </div>
-          </div>
-        </div>
+      <div class="stats">
+        <div class="stat c1"><b>0.50 / 0.49</b><span>LIBERO-PRO Spatial, Position / Task</span></div>
+        <div class="stat c2"><b>94.0%</b><span>Meta-World v3, all 50 tasks</span></div>
+        <div class="stat c3"><b>52.9%</b><span>LIBERO-X average</span></div>
+        <div class="stat c4"><b>83.8%</b><span>Real robot, 67 / 80 trials</span></div>
+        <div class="stat c5"><b>15.46&nbsp;ms</b><span>Local verification, K=3, H=8</span></div>
       </div>
     </div>
-  </section>
+  </header>
 
-  <!-- Teaser -->
-  <section class="hero teaser">
-    <div class="container is-max-desktop">
-      <div class="hero-body">
-        <figure class="ai-figure" style="margin-top:0">
-          <img src="static/images/teaser.png" class="ai-zoomable"
-               alt="Three paradigms for robot manipulation: a VLA model mapping images and language to actions, a pixel-predictive world model, and the proposed agentic model that proposes, imagines and verifies programs">
-          <figcaption>
-            <strong>Three paradigms for robot manipulation</strong>, drawn as a conceptual contrast rather than a
-            measured comparison. (a) VLA models map images and language directly to actions; under the Position axis
-            of LIBERO-PRO their success collapses in a pattern consistent with reuse of layout-conditioned trajectories.
-            (b) Pixel-predictive world models forecast future frames, enabling lookahead at high decoding cost.
-            (c) AGI also predicts the future, but in the latent space of a program-conditioned world model rather than in pixels,
-            and ranks complete programs before any motor command; panel (c) therefore contains a world model of the (b) family
-            with a different conditioning interface and no decoder.
-            The capability marks summarize each family's design, not per-cell experiments, and &ldquo;Low&rdquo;
-            compute refers to the local verification stack at 15.46 ms, excluding the 10.006 s proposer call.
-          </figcaption>
-        </figure>
-      </div>
-    </div>
-  </section>
-
-  <!-- Key numbers -->
-  <section class="section ai-stats-section">
-    <div class="container is-max-desktop">
-      <div class="ai-stats">
-        <div class="ai-stat">
-          <div class="ai-stat-value" data-count-to="0.64" data-decimals="2">0.00</div>
-          <div class="ai-stat-label">LIBERO-PRO average success</div>
+  <!-- Real robot -->
+  <section class="band alt" id="real-robot">
+    <div class="wrap">
+      <div class="head"><span class="kicker k1">Real world</span><h2>Four tabletop tasks on a Piper arm</h2></div>
+      <p class="pull">20 consecutive rollouts per task, 80 in total: <b>83.8% success (67/80)</b>, including sequential two-object placement.</p>
+      <div class="videos">
+        <div class="vcard">
+          <video controls muted loop playsinline preload="none" poster="static/videos/posters/real_robot_red_cube_poster.jpg">
+            <source src="static/videos/real_robot_red_cube.mp4" type="video/mp4"></video>
+          <div class="vbody"><div class="vrate">70%<small>14 / 20</small></div>
+            <div class="vtask">Pick up the red cube and place it on the table</div><div class="vbar"><i style="width:70%"></i></div></div>
         </div>
-        <div class="ai-stat">
-          <div class="ai-stat-value" data-count-to="94.0" data-decimals="1" data-suffix="%">0%</div>
-          <div class="ai-stat-label">Meta-World average success</div>
+        <div class="vcard">
+          <video controls muted loop playsinline preload="none" poster="static/videos/posters/real_robot_white_cube_poster.jpg">
+            <source src="static/videos/real_robot_white_cube.mp4" type="video/mp4"></video>
+          <div class="vbody"><div class="vrate">80%<small>16 / 20</small></div>
+            <div class="vtask">Pick up the white cube and place it on the table</div><div class="vbar"><i style="width:80%"></i></div></div>
         </div>
-        <div class="ai-stat">
-          <div class="ai-stat-value" data-count-to="52.9" data-decimals="1">0.0</div>
-          <div class="ai-stat-label">LIBERO-X average accuracy</div>
+        <div class="vcard">
+          <video controls muted loop playsinline preload="none" poster="static/videos/posters/real_robot_pink_cube_poster.jpg">
+            <source src="static/videos/real_robot_pink_cube.mp4" type="video/mp4"></video>
+          <div class="vbody"><div class="vrate">90%<small>18 / 20</small></div>
+            <div class="vtask">Pick up the pink cube and place it in the green tray</div><div class="vbar"><i style="width:90%"></i></div></div>
         </div>
-        <div class="ai-stat">
-          <div class="ai-stat-value" data-count-to="83.8" data-decimals="1" data-suffix="%">0%</div>
-          <div class="ai-stat-label">Real robot success (67/80)</div>
-        </div>
-        <div class="ai-stat">
-          <div class="ai-stat-value" data-count-to="15.46" data-decimals="2" data-suffix=" ms">0 ms</div>
-          <div class="ai-stat-label">Local verification per cycle</div>
+        <div class="vcard">
+          <video controls muted loop playsinline preload="none" poster="static/videos/posters/real_robot_two_cubes_poster.jpg">
+            <source src="static/videos/real_robot_two_cubes.mp4" type="video/mp4"></video>
+          <div class="vbody"><div class="vrate">95%<small>19 / 20</small></div>
+            <div class="vtask">Place one cube in a marked circle, then the other cube in the other circle</div><div class="vbar"><i style="width:95%"></i></div></div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- Real Robot Experiments -->
-  <section class="section hero is-light" id="real-robot">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3 has-text-centered">Real-World Robot Experiments</h2>
-      <p class="ai-section-intro">
-        We evaluate AGI on four real-world tabletop manipulation tasks using a 6-DoF AgileX Piper (WEGO) manipulator arm
-        equipped with a parallel-jaw gripper, with local inference running on a single NVIDIA RTX 3080 GPU. Visual feedback
-        is provided by a wrist-mounted camera and a static third-person camera overlooking the tabletop workspace.
-        Across 80 consecutive rollouts (20 trials per task), AGI achieves an overall success rate of 83.8% (67/80).
-      </p>
-
-      <div class="ai-realrobot-overview">
-        <div class="ai-realrobot-card">
-          <div class="ai-card-label">Hardware Platform</div>
-          <div class="ai-card-val">AgileX Piper</div>
-          <div class="ai-card-sub">6-DoF arm, parallel-jaw gripper</div>
-        </div>
-        <div class="ai-realrobot-card">
-          <div class="ai-card-label">Sensing Stack</div>
-          <div class="ai-card-val">RGB Dual View</div>
-          <div class="ai-card-sub">Wrist camera + third-person camera</div>
-        </div>
-        <div class="ai-realrobot-card">
-          <div class="ai-card-label">Inference Hardware</div>
-          <div class="ai-card-val">NVIDIA RTX 3080</div>
-          <div class="ai-card-sub">15.46 ms local verification cycle</div>
-        </div>
-        <div class="ai-realrobot-card">
-          <div class="ai-card-label">Evaluation Protocol</div>
-          <div class="ai-card-val">83.8% (67/80)</div>
-          <div class="ai-card-sub">20 consecutive trials per task</div>
-        </div>
-      </div>
-
-      <div class="ai-video-grid">
-        <!-- Task 1 -->
-        <div class="ai-video-card">
-          <div class="ai-video-header">
-            <h3 class="ai-video-title">Task 1: Red Cube Pick-and-Place</h3>
-            <span class="ai-video-badge ai-badge-red">70.0% (14/20)</span>
-          </div>
-          <div class="ai-video-player-box">
-            <video controls playsinline preload="metadata" poster="static/videos/posters/real_robot_red_cube_poster.jpg">
-              <source src="static/videos/real_robot_red_cube.mp4" type="video/mp4">
-              Your browser does not support HTML5 video.
-            </video>
-          </div>
-          <div class="ai-video-footer">
-            <div class="ai-video-instruction">Instruction: &ldquo;Pick up the red cube and place it on the table&rdquo;</div>
-            <div class="ai-video-meta">
-              <span>Wilson 95% CI: [48.1%, 85.5%]</span>
-              <span>Single-object tabletop placement</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Task 2 -->
-        <div class="ai-video-card">
-          <div class="ai-video-header">
-            <h3 class="ai-video-title">Task 2: White Cube Pick-and-Place</h3>
-            <span class="ai-video-badge ai-badge-blue">80.0% (16/20)</span>
-          </div>
-          <div class="ai-video-player-box">
-            <video controls playsinline preload="metadata" poster="static/videos/posters/real_robot_white_cube_poster.jpg">
-              <source src="static/videos/real_robot_white_cube.mp4" type="video/mp4">
-              Your browser does not support HTML5 video.
-            </video>
-          </div>
-          <div class="ai-video-footer">
-            <div class="ai-video-instruction">Instruction: &ldquo;Pick up the white cube and place it on the table&rdquo;</div>
-            <div class="ai-video-meta">
-              <span>Wilson 95% CI: [58.4%, 91.9%]</span>
-              <span>Single-object tabletop placement</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Task 3 -->
-        <div class="ai-video-card">
-          <div class="ai-video-header">
-            <h3 class="ai-video-title">Task 3: Pink Cube to Green Tray</h3>
-            <span class="ai-video-badge ai-badge-pink">90.0% (18/20)</span>
-          </div>
-          <div class="ai-video-player-box">
-            <video controls playsinline preload="metadata" poster="static/videos/posters/real_robot_pink_cube_poster.jpg">
-              <source src="static/videos/real_robot_pink_cube.mp4" type="video/mp4">
-              Your browser does not support HTML5 video.
-            </video>
-          </div>
-          <div class="ai-video-footer">
-            <div class="ai-video-instruction">Instruction: &ldquo;Pick up the pink cube and place it into the green tray&rdquo;</div>
-            <div class="ai-video-meta">
-              <span>Wilson 95% CI: [69.9%, 97.2%]</span>
-              <span>Container placement with height clearance</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Task 4 -->
-        <div class="ai-video-card">
-          <div class="ai-video-header">
-            <h3 class="ai-video-title">Task 4: Sequential Two-Cube Placement</h3>
-            <span class="ai-video-badge ai-badge-green">95.0% (19/20)</span>
-          </div>
-          <div class="ai-video-player-box">
-            <video controls playsinline preload="metadata" poster="static/videos/posters/real_robot_two_cubes_poster.jpg">
-              <source src="static/videos/real_robot_two_cubes.mp4" type="video/mp4">
-              Your browser does not support HTML5 video.
-            </video>
-          </div>
-          <div class="ai-video-footer">
-            <div class="ai-video-instruction">Instruction: &ldquo;Place one cube in a marked circle, then place the other cube in the other circle&rdquo;</div>
-            <div class="ai-video-meta">
-              <span>Wilson 95% CI: [76.4%, 99.1%]</span>
-              <span>Sequential multi-stage placement</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <figure class="ai-figure">
-        <img src="static/images/real_robot.jpg" class="ai-zoomable" loading="lazy"
-             alt="Real-robot tabletop manipulation with the Piper (WEGO) arm: setup, success rates with Wilson 95% CI, and keyframe sequences across four tasks">
-        <figcaption>
-          <strong>Real-robot tabletop manipulation with the Piper (WEGO) arm.</strong> Top: setup and success rates
-          over 20 consecutive rollouts per task (80 total); whiskers denote Wilson 95% confidence intervals.
-          Bottom: red- and white-cube placement on the table, pink-cube placement into the green tray, and sequential
-          placement of two cubes in separate marked circles. Each row shows the initial state (<em>t</em><sub>1</sub>),
-          execution (<em>t</em><sub>2</sub>&ndash;<em>t</em><sub>5</sub>), and end state (<em>t</em><sub>6</sub>).
-          Overall success is 83.8% (67/80), with inference on an NVIDIA RTX 3080 GPU.
-        </figcaption>
+      <p class="note">6-DoF Piper (WEGO) arm with a parallel-jaw gripper, a wrist-mounted and a third-person camera, inference on an NVIDIA RTX 3090 GPU.</p>
+      <figure class="fig">
+        <img src="static/images/real_robot.jpg" class="zoom" loading="lazy" alt="Real-robot setup, per-task success rates and keyframes">
+        <figcaption>Top: setup and success rates over 20 consecutive rollouts per task; whiskers are Wilson 95% intervals.
+          Bottom: keyframes from the initial state (t<sub>1</sub>) through execution to the end state (t<sub>6</sub>).</figcaption>
       </figure>
     </div>
   </section>
 
   <!-- LIBERO-PRO -->
-  <section class="section" id="results">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3 has-text-centered">LIBERO-PRO</h2>
-      <p class="ai-section-intro">
-        Normalized success under five perturbation axes. Pick a suite; click a column header to sort.
-        Cell shading tracks the value, so the Position and Task columns read at a glance.
-      </p>
-
-      <figure class="ai-figure" style="margin-top:0">
-        <img src="static/images/fig_libero_pro_heatmap.png" class="ai-zoomable" loading="lazy"
-             alt="LIBERO-PRO normalized success across Goal, Spatial, LIBERO-10, and Object suites under five perturbation axes">
-        <figcaption>
-          <strong>LIBERO-PRO normalized success across Goal, Spatial, LIBERO-10, and Object suites.</strong>
-          Columns report Object (Obj), Position (Pos), Semantic (Sem), Task, and Environment (Env) perturbations;
-          red outlines identify the geometry-changing Position and Task axes. Gray cells are unreported, and the
-          baseline mean uses the complete-case rows OpenVLA, &pi;<sub>0</sub>, and &pi;<sub>0.5</sub>.
-        </figcaption>
+  <section class="band" id="libero-pro">
+    <div class="wrap">
+      <div class="head"><span class="kicker k2">Robustness</span><h2>LIBERO-PRO</h2></div>
+      <p class="pull">On LIBERO-PRO Spatial, OpenVLA and &pi;<sub>0</sub> score <b>0.00</b> on both the Position and Task axes, while AGI reaches <b>0.50 / 0.49</b>.</p>
+      <figure class="fig" style="margin-top:0">
+        <img src="static/images/fig_libero_pro_heatmap.png" class="zoom" loading="lazy"
+             alt="LIBERO-PRO normalized success heat map across four suites and five perturbation axes">
+        <figcaption>Normalized success across the Goal, Spatial, LIBERO-10 and Object suites under Object, Position, Semantic,
+          Task and Environment perturbations. Red outlines mark the geometry-changing Position and Task axes.</figcaption>
       </figure>
-
-      <div class="ai-tabs" id="ai-suite-picker" role="tablist" aria-label="LIBERO suite">
-        <button class="ai-tab" role="tab" aria-selected="false" data-suite="goal">LIBERO Goal</button>
-        <button class="ai-tab is-active" role="tab" aria-selected="true" data-suite="spatial">LIBERO Spatial</button>
-        <button class="ai-tab" role="tab" aria-selected="false" data-suite="libero10">LIBERO 10</button>
-        <button class="ai-tab" role="tab" aria-selected="false" data-suite="object">LIBERO Object</button>
-      </div>
-
-      <div class="ai-axis-key">
-        <span><b>Obj</b> object swapped</span>
-        <span class="is-focus"><b>Pos</b> object placement changed</span>
-        <span><b>Sem</b> instruction rephrased</span>
-        <span class="is-focus"><b>Task</b> target object or action changed</span>
-        <span><b>Env</b> scene appearance changed</span>
-      </div>
-
-      <div class="ai-table-controls">
-        <span class="ai-sort-hint"><i class="fas fa-sort"></i> click any header to sort</span>
-        <span class="ai-sort-hint">Avg. SR is each row's average over its own reported cells, across all four suites</span>
-      </div>
-
-      <div class="ai-table-wrap">
-        <table class="ai-table" id="ai-pro-table">
-          <thead>
-            <tr>
-              <th class="ai-sortable ai-th-text" scope="col">Model <i class="fas fa-sort"></i></th>
-              <th class="ai-sortable" scope="col">Obj <i class="fas fa-sort"></i></th>
-              <th class="ai-sortable" scope="col">Pos <i class="fas fa-sort"></i></th>
-              <th class="ai-sortable" scope="col">Sem <i class="fas fa-sort"></i></th>
-              <th class="ai-sortable" scope="col">Task <i class="fas fa-sort"></i></th>
-              <th class="ai-sortable" scope="col">Env <i class="fas fa-sort"></i></th>
-              <th class="ai-sortable ai-col-avg" scope="col">Avg. SR <i class="fas fa-sort"></i></th>
-            </tr>
-          </thead>
-          <tbody><!-- rendered by static/js/index.js from the paper's Table II --></tbody>
-        </table>
-      </div>
-      <p class="ai-table-note">
-        Dashes mark cells the source did not report, and are never imputed. On the Spatial suite, OpenVLA and
-        &pi;<sub>0</sub> score 0.00 on both Position and Task, while our loop reaches 0.50 and 0.49. The gain is a
-        redistribution rather than uniform dominance: Spatial-Semantic success is 0.73 against 0.88&ndash;0.97 for the
-        displayed baselines, and the Object-suite Object score is 0.76 against leaders at 0.98.
-      </p>
-
-      <figure class="ai-figure">
-        <img src="static/images/libero_pro_frames.jpg" class="ai-zoomable"
-             alt="Rollout frames from initial state through execution to end state for the Spatial, Goal, Object and Long-horizon LIBERO suites">
-        <figcaption>
-          <strong>Representative successful Position-shift rollouts</strong> across the Spatial, Goal, Object and
-          Long-horizon suites. Each sequence runs from the initial state through intermediate execution to a
-          successful terminal state, qualitatively confirming that the controller adapts its explicit geometric
-          program to changed object placement rather than executing one fixed scene-specific trajectory.
-        </figcaption>
-      </figure>
+      <p class="note">The gain is not uniform: Spatial-Semantic success remains 0.73.</p>
     </div>
   </section>
 
-  <!-- Cross-benchmark -->
-  <section class="section hero is-light" id="benchmarks">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3 has-text-centered">Meta-World and LIBERO-X</h2>
-      <p class="ai-section-intro">Hover a bar to read its exact value.</p>
-
-      <div class="ai-chart">
-        <div class="ai-legend">
-          <span class="ai-legend-item"><i class="ai-swatch ai-c-a"></i>Mamba Policy</span>
-          <span class="ai-legend-item"><i class="ai-swatch ai-c-b"></i>HarmonyDream</span>
-          <span class="ai-legend-item"><i class="ai-swatch ai-c-c"></i>&pi;<sub>0</sub></span>
-          <span class="ai-legend-item"><i class="ai-swatch ai-c-ours"></i>Ours</span>
-        </div>
-        <div class="ai-groups">
-          <div class="ai-group">
-            <div class="ai-cols">
-              <div class="ai-col ai-c-a" style="--h:95.4%" data-v="95.4"><span>95.4</span></div>
-              <div class="ai-col ai-c-b" style="--h:81.0%" data-v="81.0"><span>81.0</span></div>
-              <div class="ai-col ai-c-c" style="--h:71.8%" data-v="71.8"><span>71.8</span></div>
-              <div class="ai-col ai-c-ours" style="--h:98.3%" data-v="98.3"><span>98.3</span></div>
-            </div>
-            <div class="ai-group-label">Easy</div>
-          </div>
-          <div class="ai-group">
-            <div class="ai-cols">
-              <div class="ai-col ai-c-a" style="--h:92.2%" data-v="92.2"><span>92.2</span></div>
-              <div class="ai-col ai-c-b" style="--h:91.0%" data-v="91.0"><span>91.0</span></div>
-              <div class="ai-col ai-c-c" style="--h:48.2%" data-v="48.2"><span>48.2</span></div>
-              <div class="ai-col ai-c-ours" style="--h:95.7%" data-v="95.7"><span>95.7</span></div>
-            </div>
-            <div class="ai-group-label">Mid</div>
-          </div>
-          <div class="ai-group">
-            <div class="ai-cols">
-              <div class="ai-col ai-c-a" style="--h:48.3%" data-v="48.3"><span>48.3</span></div>
-              <div class="ai-col ai-c-b" style="--h:72.5%" data-v="72.5"><span>72.5</span></div>
-              <div class="ai-col ai-c-c" style="--h:41.7%" data-v="41.7"><span>41.7</span></div>
-              <div class="ai-col ai-c-ours" style="--h:91.3%" data-v="91.3"><span>91.3</span></div>
-            </div>
-            <div class="ai-group-label">Hard</div>
-          </div>
-          <div class="ai-group">
-            <div class="ai-cols">
-              <div class="ai-col ai-c-a" style="--h:71.2%" data-v="71.2"><span>71.2</span></div>
-              <div class="ai-col ai-c-b" style="--h:44.5%" data-v="44.5"><span>44.5</span></div>
-              <div class="ai-col ai-c-c" style="--h:30.0%" data-v="30.0"><span>30.0</span></div>
-              <div class="ai-col ai-c-ours" style="--h:90.6%" data-v="90.6"><span>90.6</span></div>
-            </div>
-            <div class="ai-group-label">Very Hard</div>
+  <!-- Meta-World & LIBERO-X -->
+  <section class="band alt" id="benchmarks">
+    <div class="wrap">
+      <div class="head"><span class="kicker k3">Breadth</span><h2>Meta-World v3 &amp; LIBERO-X</h2></div>
+      <div class="stack-col">
+        <div>
+          <h3 class="sub">Meta-World v3 <small>success (%), 50 tasks</small></h3>
+          <div class="table-wrap">
+            <table class="tbl">
+              <thead><tr><th>Method</th><th>Venue</th><th>Params</th><th>Easy</th><th>Mid</th><th>Hard</th><th>V.Hard</th><th class="col-avg">Avg.</th></tr></thead>
+              <tbody>
+                <tr><th>HarmonyDream</th><td>ICML'24</td><td>77M</td><td>81.0</td><td>91.0</td><td class="second">72.5</td><td>44.5</td><td class="col-avg">72.3</td></tr>
+                <tr><th>Diffusion Policy</th><td>IJRR'25</td><td>80M</td><td>83.6</td><td>31.1</td><td>9.0</td><td>26.6</td><td class="col-avg">37.6</td></tr>
+                <tr><th>TinyVLA</th><td>ICRA'25</td><td>1.5B</td><td>77.6</td><td>21.5</td><td>11.4</td><td>15.8</td><td class="col-avg">31.6</td></tr>
+                <tr><th>Mamba Policy</th><td>IROS'25</td><td>&ndash;</td><td class="second">95.4</td><td class="second">92.2</td><td>48.3</td><td class="second">71.2</td><td class="col-avg second">76.8</td></tr>
+                <tr><th>&pi;<sub>0</sub></th><td>RSS'25</td><td>3.3B</td><td>71.8</td><td>48.2</td><td>41.7</td><td>30.0</td><td class="col-avg">47.9</td></tr>
+                <tr class="ours"><th>AGI</th><td>&ndash;</td><td>277M</td><td class="best">98.3</td><td class="best">95.7</td><td class="best">91.3</td><td class="best">90.6</td><td class="col-avg best">94.0</td></tr>
+              </tbody>
+            </table>
           </div>
         </div>
-        <p class="ai-chart-caption">
-          Meta-World success rate (%) across difficulty splits, 20 episodes per task over 50 tasks. The three
-          strongest displayed baselines are shown; the full table is below. Protocol differences make this panel
-          contextual rather than a controlled cross-paper ranking.
-        </p>
-      </div>
-
-      <div class="ai-table-wrap" style="margin-top:2rem">
-        <table class="ai-table">
-          <caption class="ai-caption">Meta-World v3 success (%) across difficulty splits (Table I, left)</caption>
-          <thead>
-            <tr>
-              <th class="ai-th-text" scope="col">Method</th>
-              <th class="ai-th-text" scope="col">Venue</th>
-              <th scope="col">Params</th>
-              <th scope="col">Easy</th><th scope="col">Mid</th><th scope="col">Hard</th><th scope="col">V. Hard</th>
-              <th class="ai-col-avg" scope="col">Avg.</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><th scope="row">HarmonyDream</th><td class="ai-th-text">ICML'24</td><td>77M</td><td>81.0</td><td>91.0</td><td>72.5</td><td>44.5</td><td class="ai-col-avg">72.3</td></tr>
-            <tr><th scope="row">DP</th><td class="ai-th-text">IJRR'25</td><td>80M</td><td>83.6</td><td>31.1</td><td>9.0</td><td>26.6</td><td class="ai-col-avg">37.6</td></tr>
-            <tr><th scope="row">TinyVLA</th><td class="ai-th-text">ICRA'25</td><td>1.5B</td><td>77.6</td><td>21.5</td><td>11.4</td><td>15.8</td><td class="ai-col-avg">31.6</td></tr>
-            <tr><th scope="row">Mamba Policy</th><td class="ai-th-text">IROS'25</td><td>&ndash;</td><td>95.4</td><td>92.2</td><td>48.3</td><td>71.2</td><td class="ai-col-avg">76.8</td></tr>
-            <tr><th scope="row">&pi;<sub>0</sub></th><td class="ai-th-text">RSS'25</td><td>3.3B</td><td>71.8</td><td>48.2</td><td>41.7</td><td>30.0</td><td class="ai-col-avg">47.9</td></tr>
-            <tr class="ai-ours"><th scope="row">AGI <span class="ai-ours-tag">Ours</span></th><td class="ai-th-text">&ndash;</td><td>277M</td><td>98.3</td><td>95.7</td><td>91.3</td><td>90.6</td><td class="ai-col-avg">94.0</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h3 class="title is-4 has-text-centered" style="margin-top:3rem">Degradation under cumulative severity</h3>
-      <p class="ai-section-intro">
-        LIBERO-X grades distribution shift across five cumulative severity levels. Our accuracy decreases
-        monotonically from 73.6 at Level&nbsp;1 to 33.8 at Level&nbsp;5, remaining above every displayed baseline at
-        each level.
-      </p>
-
-      <div class="ai-chart">
-        <div class="ai-legend">
-          <span class="ai-legend-item"><i class="ai-swatch ai-c-a"></i>&pi;<sub>0.5</sub></span>
-          <span class="ai-legend-item"><i class="ai-swatch ai-c-b"></i>GR00T N1.5</span>
-          <span class="ai-legend-item"><i class="ai-swatch ai-c-c"></i>&pi;<sub>0</sub></span>
-          <span class="ai-legend-item"><i class="ai-swatch ai-c-ours"></i>Ours</span>
-        </div>
-        <div class="ai-groups is-five">
-          <div class="ai-group">
-            <div class="ai-cols">
-              <div class="ai-col ai-c-a" style="--h:65.2%" data-v="65.2"><span>65.2</span></div>
-              <div class="ai-col ai-c-b" style="--h:43.3%" data-v="43.3"><span>43.3</span></div>
-              <div class="ai-col ai-c-c" style="--h:29.4%" data-v="29.4"><span>29.4</span></div>
-              <div class="ai-col ai-c-ours" style="--h:73.6%" data-v="73.6"><span>73.6</span></div>
-            </div>
-            <div class="ai-group-label">L1</div>
-          </div>
-          <div class="ai-group">
-            <div class="ai-cols">
-              <div class="ai-col ai-c-a" style="--h:53.2%" data-v="53.2"><span>53.2</span></div>
-              <div class="ai-col ai-c-b" style="--h:32.9%" data-v="32.9"><span>32.9</span></div>
-              <div class="ai-col ai-c-c" style="--h:21.9%" data-v="21.9"><span>21.9</span></div>
-              <div class="ai-col ai-c-ours" style="--h:62.9%" data-v="62.9"><span>62.9</span></div>
-            </div>
-            <div class="ai-group-label">L2</div>
-          </div>
-          <div class="ai-group">
-            <div class="ai-cols">
-              <div class="ai-col ai-c-a" style="--h:36.0%" data-v="36.0"><span>36.0</span></div>
-              <div class="ai-col ai-c-b" style="--h:18.7%" data-v="18.7"><span>18.7</span></div>
-              <div class="ai-col ai-c-c" style="--h:11.0%" data-v="11.0"><span>11.0</span></div>
-              <div class="ai-col ai-c-ours" style="--h:52.4%" data-v="52.4"><span>52.4</span></div>
-            </div>
-            <div class="ai-group-label">L3</div>
-          </div>
-          <div class="ai-group">
-            <div class="ai-cols">
-              <div class="ai-col ai-c-a" style="--h:24.1%" data-v="24.1"><span>24.1</span></div>
-              <div class="ai-col ai-c-b" style="--h:13.3%" data-v="13.3"><span>13.3</span></div>
-              <div class="ai-col ai-c-c" style="--h:7.6%" data-v="7.6"><span>7.6</span></div>
-              <div class="ai-col ai-c-ours" style="--h:41.7%" data-v="41.7"><span>41.7</span></div>
-            </div>
-            <div class="ai-group-label">L4</div>
-          </div>
-          <div class="ai-group">
-            <div class="ai-cols">
-              <div class="ai-col ai-c-a" style="--h:18.0%" data-v="18.0"><span>18.0</span></div>
-              <div class="ai-col ai-c-b" style="--h:9.7%" data-v="9.7"><span>9.7</span></div>
-              <div class="ai-col ai-c-c" style="--h:5.1%" data-v="5.1"><span>5.1</span></div>
-              <div class="ai-col ai-c-ours" style="--h:33.8%" data-v="33.8"><span>33.8</span></div>
-            </div>
-            <div class="ai-group-label">L5</div>
+        <div>
+          <h3 class="sub">LIBERO-X <small>accuracy (%), cumulative severity</small></h3>
+          <div class="table-wrap">
+            <table class="tbl">
+              <thead><tr><th>Method</th><th>Venue</th><th>Params</th><th>L1</th><th>L2</th><th>L3</th><th>L4</th><th>L5</th><th class="col-avg">Avg.</th></tr></thead>
+              <tbody>
+                <tr><th>GR00T N1.5</th><td>arXiv'25</td><td>3B</td><td>43.3</td><td>32.9</td><td>18.7</td><td>13.3</td><td>9.7</td><td class="col-avg">23.6</td></tr>
+                <tr><th>OpenVLA-OFT</th><td>RSS'25</td><td>7B</td><td>29.0</td><td>17.6</td><td>8.8</td><td>6.4</td><td>4.2</td><td class="col-avg">13.2</td></tr>
+                <tr><th>&pi;<sub>0.5</sub></th><td>CoRL'25</td><td>3.5B</td><td class="second">65.2</td><td class="second">53.2</td><td class="second">36.0</td><td class="second">24.1</td><td class="second">18.0</td><td class="col-avg second">39.3</td></tr>
+                <tr><th>&pi;<sub>0</sub></th><td>RSS'25</td><td>3.3B</td><td>29.4</td><td>21.9</td><td>11.0</td><td>7.6</td><td>5.1</td><td class="col-avg">15.0</td></tr>
+                <tr><th>X-VLA</th><td>ICLR'26</td><td>1B</td><td>30.1</td><td>22.6</td><td>10.3</td><td>6.0</td><td>4.1</td><td class="col-avg">14.6</td></tr>
+                <tr class="ours"><th>AGI</th><td>&ndash;</td><td>277M</td><td class="best">73.6</td><td class="best">62.9</td><td class="best">52.4</td><td class="best">41.7</td><td class="best">33.8</td><td class="col-avg best">52.9</td></tr>
+              </tbody>
+            </table>
           </div>
         </div>
-        <p class="ai-chart-caption">
-          LIBERO-X accuracy (%) under increasing cumulative perturbation severity. L1&ndash;L3 use 600 tasks,
-          L4&ndash;L5 use 826 tasks. Averaged over levels: ours 52.9, &pi;<sub>0.5</sub> 39.3, GR00T N1.5 23.6,
-          &pi;<sub>0</sub> 15.0, X-VLA 14.6, OpenVLA-OFT 13.2.
-        </p>
       </div>
-
-      <div class="ai-table-wrap" style="margin-top:2rem">
-        <table class="ai-table">
-          <caption class="ai-caption">LIBERO-X accuracy (%) across cumulative severity levels (Table I, right)</caption>
-          <thead>
-            <tr>
-              <th class="ai-th-text" scope="col">Method</th>
-              <th class="ai-th-text" scope="col">Venue</th>
-              <th scope="col">Params</th>
-              <th scope="col">L1</th><th scope="col">L2</th><th scope="col">L3</th><th scope="col">L4</th><th scope="col">L5</th>
-              <th class="ai-col-avg" scope="col">Avg.</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><th scope="row">GR00T N1.5</th><td class="ai-th-text">arXiv'25</td><td>3B</td><td>43.3</td><td>32.9</td><td>18.7</td><td>13.3</td><td>9.7</td><td class="ai-col-avg">23.6</td></tr>
-            <tr><th scope="row">OpenVLA-OFT</th><td class="ai-th-text">RSS'25</td><td>7B</td><td>29.0</td><td>17.6</td><td>8.8</td><td>6.4</td><td>4.2</td><td class="ai-col-avg">13.2</td></tr>
-            <tr><th scope="row">&pi;<sub>0.5</sub></th><td class="ai-th-text">CoRL'25</td><td>3.5B</td><td>65.2</td><td>53.2</td><td>36.0</td><td>24.1</td><td>18.0</td><td class="ai-col-avg">39.3</td></tr>
-            <tr><th scope="row">&pi;<sub>0</sub></th><td class="ai-th-text">RSS'25</td><td>3.3B</td><td>29.4</td><td>21.9</td><td>11.0</td><td>7.6</td><td>5.1</td><td class="ai-col-avg">15.0</td></tr>
-            <tr><th scope="row">X-VLA</th><td class="ai-th-text">ICLR'26</td><td>1B</td><td>30.1</td><td>22.6</td><td>10.3</td><td>6.0</td><td>4.1</td><td class="ai-col-avg">14.6</td></tr>
-            <tr class="ai-ours"><th scope="row">AGI <span class="ai-ours-tag">Ours</span></th><td class="ai-th-text">&ndash;</td><td>277M</td><td>73.6</td><td>62.9</td><td>52.4</td><td>41.7</td><td>33.8</td><td class="ai-col-avg">52.9</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <figure class="ai-figure">
-        <img src="static/images/fig_robustness.png" class="ai-zoomable" loading="lazy"
-             alt="LIBERO-X robustness under cumulative perturbations: accuracy across severity levels and retained accuracy">
-        <figcaption>
-          <strong>LIBERO-X robustness under cumulative perturbations.</strong>
-          (a) Accuracy across severity levels. (b) L5-to-L1 retained accuracy, which distinguishes absolute
-          performance from degradation rate: AGI retains 46% of initial accuracy at L5, versus 28% for the nearest curve.
-        </figcaption>
+      <p class="note"><b>Bold</b>: best, <u>underline</u>: second best. These cross-paper comparisons show breadth, not controlled superiority or zero-shot transfer.</p>
+      <figure class="fig fig-narrow">
+        <img src="static/images/fig_robustness.png" class="zoom" loading="lazy" alt="LIBERO-X accuracy across severity levels and L5-to-L1 retained accuracy">
+        <figcaption>LIBERO-X under cumulative perturbations. (a) Accuracy across severity levels. (b) L5-to-L1 retained accuracy:
+          AGI retains 46% of its L1 accuracy at L5, versus 28% for the nearest curve.</figcaption>
       </figure>
-
-      <h3 class="title is-4 has-text-centered" style="margin-top:3rem">Rollouts on both benchmarks</h3>
-      <p class="ai-section-intro">
-        Frames sampled evenly from successful episodes, initial state through execution to the terminal state the
-        success checker accepted. The green outline marks the largest region of each frame that differs from the
-        static scene. The camera never moves, so the median of an episode is the empty scene. It is computed
-        from pixels to trace the arm, and is not an object detection.
-      </p>
-
-      <figure class="ai-figure">
-        <img src="static/images/metaworld_frames.jpg" class="ai-zoomable" loading="lazy"
-             alt="Rollout frames from initial state through execution to end state for one Meta-World task from each of the Easy, Medium, Hard and Very Hard difficulty splits">
-        <figcaption>
-          <strong>Meta-World rollouts, one task per difficulty split.</strong> Easy presses a top-down button,
-          Medium drives a hammer, Hard lifts a puck out of a hole, and Very Hard disassembles a peg. Drawn from
-          our own evaluation runs rather than the cross-paper table above, whose protocol differs.
-        </figcaption>
-      </figure>
-
-      <figure class="ai-figure">
-        <img src="static/images/liberox_frames.jpg" class="ai-zoomable" loading="lazy"
-             alt="Rollout frames from initial state through execution to end state for four LIBERO-X kitchen tasks: placing, stacking, turning on a stove and opening a microwave">
-        <figcaption>
-          <strong>LIBERO-X rollouts, one task per action.</strong> The arm moves a bowl onto a plate, stacks one
-          bowl on another, turns a stove on until the burner glows, and swings a microwave door open. Drawn from a
-          Level&nbsp;1 sweep on our own hardware, which uses a different checkpoint and task set from the
-          severity table above.
-        </figcaption>
-      </figure>
-
-      <p class="ai-section-intro" style="margin-top:2rem">
-        Those four rows are a sample. Every LIBERO-X task that produced a successful episode is browsable
-        frame by frame, with the program statistics recorded for each rollout.
-      </p>
-      <div class="has-text-centered" style="margin-bottom:1rem">
-        <a href="rollouts.html" class="external-link button is-normal is-rounded is-dark">
-          <span class="icon"><i class="fas fa-film"></i></span>
-          <span>Browse all 125 rollouts</span>
-        </a>
+      <div class="two-col">
+        <figure class="fig" style="margin-top:0">
+          <img src="static/images/liberox_frames.jpg" class="zoom" loading="lazy" alt="Successful LIBERO-X rollouts across four instruction verbs">
+          <figcaption>Successful LIBERO-X rollouts across four instruction verbs, from a Level 1 sweep that uses a different checkpoint and task set from the table above.</figcaption>
+        </figure>
+        <figure class="fig" style="margin-top:0">
+          <img src="static/images/metaworld_frames.jpg" class="zoom" loading="lazy" alt="Successful Meta-World rollouts across four difficulty splits">
+          <figcaption>Successful Meta-World rollouts across four difficulty splits, from our own evaluation runs rather than the cross-paper table above.</figcaption>
+        </figure>
       </div>
     </div>
   </section>
 
   <!-- Ablation -->
-  <section class="section" id="ablation">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3 has-text-centered">What Each Part Is Worth</h2>
-      <p class="ai-section-intro">
-        Switch the decision rule to separate the program interface from replanning and ranking. Every row received
-        byte-identical ordered candidates, and candidate forks restored the same simulator and RNG state.
-      </p>
-
-      <div class="ai-builder">
-        <div class="ai-builder-controls" role="tablist" aria-label="Decision rule">
-          <button class="ai-rule is-active" role="tab" aria-selected="true" data-rule="ranker">
-            <strong>Latent ranker</strong><em>K = 3, imagine and score</em>
-          </button>
-          <button class="ai-rule" role="tab" aria-selected="false" data-rule="first">
-            <strong>First valid</strong><em>K = 3, no scoring</em>
-          </button>
-          <button class="ai-rule" role="tab" aria-selected="false" data-rule="random">
-            <strong>Uniform random</strong><em>K = 3, random pick</em>
-          </button>
-          <button class="ai-rule" role="tab" aria-selected="false" data-rule="oneshot">
-            <strong>One-shot program</strong><em>K = 1, no loop</em>
-          </button>
-        </div>
-
-        <div class="ai-builder-readout">
-          <div class="ai-variant-name" id="ai-rule-name">Latent ranker</div>
-          <div class="ai-rule-detail" id="ai-rule-detail"></div>
-
-          <div class="ai-metric">
-            <div class="ai-metric-head"><span>Position-axis success</span><span class="ai-metric-val" id="ai-m-pos">0.50</span></div>
-            <div class="ai-bar"><div class="ai-bar-fill" id="ai-b-pos" style="width:50%"></div></div>
-          </div>
-          <div class="ai-metric">
-            <div class="ai-metric-head"><span>Task-axis success</span><span class="ai-metric-val" id="ai-m-task">0.49</span></div>
-            <div class="ai-bar"><div class="ai-bar-fill is-alt" id="ai-b-task" style="width:49%"></div></div>
-          </div>
-
-          <div class="ai-metric-grid">
-            <div><span class="ai-mg-label">Planning rounds</span><span class="ai-mg-val" id="ai-m-rounds">3.1</span></div>
-            <div><span class="ai-mg-label">Commit &kappa;</span><span class="ai-mg-val" id="ai-m-commit">2</span></div>
-            <div><span class="ai-mg-label">Env. steps</span><span class="ai-mg-val" id="ai-m-steps">410</span></div>
-            <div><span class="ai-mg-label">Zero-valid</span><span class="ai-mg-val" id="ai-m-invalid">1.8%</span></div>
-          </div>
-
-          <p class="ai-delta" id="ai-delta"></p>
+  <section class="band" id="ablation">
+    <div class="wrap">
+      <div class="head"><span class="kicker k4">Ablation</span><h2>What each part is worth</h2></div>
+      <div class="segctl-wrap">
+        <div class="segctl" data-src="rules" data-out="rule-out">
+          <button type="button" data-key="oneshot">One-shot, K=1</button>
+          <button type="button" data-key="random">Random, K=3</button>
+          <button type="button" data-key="first">First valid, K=3</button>
+          <button type="button" data-key="ranker" class="on">Latent ranker, K=3</button>
         </div>
       </div>
+      <div class="panel" id="rule-out">
+        <div class="panel-title" data-field="name"></div>
+        <div class="panel-sub" data-field="detail"></div>
+        <div class="panel-grid">
+          <div class="meter"><div class="meter-head"><span>Position-axis success</span><b data-field="pos"></b></div><div class="meter-bar"><i data-bar="pos" data-scale="1"></i></div></div>
+          <div class="meter"><div class="meter-head"><span>Task-axis success</span><b data-field="task"></b></div><div class="meter-bar alt"><i data-bar="task" data-scale="1"></i></div></div>
+        </div>
+      </div>
+      <p class="note">LIBERO-PRO Spatial, policy level. The program boundary with bounded replanning and latent ranking each add 0.060 to mean Position/Task success; these increments are descriptive because the variants visit different states.</p>
+      <script type="application/json" id="rules">
+        {"oneshot": {"name": "One-shot program", "detail": "K = 1, no replanning loop", "pos": "0.38", "task": "0.37"},
+         "random":  {"name": "Uniform random", "detail": "K = 3, a random valid candidate", "pos": "0.44", "task": "0.43"},
+         "first":   {"name": "First valid", "detail": "K = 3, the first candidate that parses", "pos": "0.45", "task": "0.44"},
+         "ranker":  {"name": "Latent ranker (AGI)", "detail": "K = 3, predict each program in latent space and rank", "pos": "0.50", "task": "0.49"}}
+      </script>
 
-      <p class="ai-table-note">
-        Task-aggregated point estimates on LIBERO-PRO Spatial. All K&nbsp;=&nbsp;3 rows fix the commit length,
-        round budget and step ceiling. At this sample size, differences below roughly 0.10 should be read cautiously;
-        the paired test below is the powered evidence for the ranking claim.
-      </p>
-
-      <h3 class="title is-4 has-text-centered" style="margin-top:3.5rem">Same-candidate selector diagnostic</h3>
-      <p class="ai-section-intro">
-        Every valid candidate ran to completion from the same restored state, so the only thing that varies is which
-        one the rule picks. M&nbsp;=&nbsp;800 states, mean 2.88 valid candidates, prevalence 0.52.
-      </p>
-
-      <figure class="ai-figure" style="margin-top:1.5rem">
-        <img src="static/images/fig_selector.png" class="ai-zoomable"
-             alt="Selection ablation on LIBERO-PRO Spatial: (a) Policy-level gains from the program boundary with replanning and from latent ranking. (b) Identical-candidate Top-1 success, showing captured selector headroom eta and the residual oracle-coverage gap.">
-        <figcaption>
-          <strong>Selection ablation on LIBERO-PRO Spatial.</strong> (a) Policy-level gains from the program boundary with replanning and from latent ranking. (b) Identical-candidate Top-1 success over 800 restored states, showing captured selector headroom &eta;&nbsp;=&nbsp;0.40 (95% CI 0.22&ndash;0.58) and the residual oracle-coverage gap of 0.25.
-        </figcaption>
+      <figure class="fig fig-narrow">
+        <img src="static/images/fig_selector.png" class="zoom" loading="lazy" alt="Selection ablation: policy-level gains and identical-candidate Top-1 success">
+        <figcaption>(a) Policy-level gains on LIBERO-PRO Spatial. (b) Top-1 success on byte-identical candidates over 800 restored
+          states: the ranker lifts first-valid selection from 0.57 to 0.63 and captures &eta; = 0.40 of the oracle headroom
+          (95% CI 0.22&ndash;0.58; exact McNemar p &lt; 0.001).</figcaption>
       </figure>
 
-      <div class="ai-chart">
-        <div class="ai-ladder">
-          <div class="ai-rung is-bound" style="--w:75%">
-            <span class="ai-rung-label">Oracle @ K</span>
-            <span class="ai-rung-track"><span class="ai-rung-fill"></span></span>
-            <span class="ai-rung-val">0.75</span>
-          </div>
-          <div class="ai-rung is-ours" style="--w:63%">
-            <span class="ai-rung-label">Latent ranker</span>
-            <span class="ai-rung-track"><span class="ai-rung-fill"></span></span>
-            <span class="ai-rung-val">0.63</span>
-          </div>
-          <div class="ai-rung" style="--w:61%">
-            <span class="ai-rung-label">Step head only</span>
-            <span class="ai-rung-track"><span class="ai-rung-fill"></span></span>
-            <span class="ai-rung-val">0.61</span>
-          </div>
-          <div class="ai-rung" style="--w:60%">
-            <span class="ai-rung-label">Terminal head only</span>
-            <span class="ai-rung-track"><span class="ai-rung-fill"></span></span>
-            <span class="ai-rung-val">0.60</span>
-          </div>
-          <div class="ai-rung" style="--w:57%">
-            <span class="ai-rung-label">First valid</span>
-            <span class="ai-rung-track"><span class="ai-rung-fill"></span></span>
-            <span class="ai-rung-val">0.57</span>
-          </div>
-          <div class="ai-rung" style="--w:55%">
-            <span class="ai-rung-label">Uniform random</span>
-            <span class="ai-rung-track"><span class="ai-rung-fill"></span></span>
-            <span class="ai-rung-val">0.55</span>
-          </div>
-          <div class="ai-rung is-bound" style="--w:40%">
-            <span class="ai-rung-label">Anti-oracle</span>
-            <span class="ai-rung-track"><span class="ai-rung-fill"></span></span>
-            <span class="ai-rung-val">0.40</span>
-          </div>
-        </div>
-
-        <div class="ai-gap-note">
-          <div class="ai-gap">
-            <div class="ai-gap-val">+0.06</div>
-            <div class="ai-gap-label">Top-1 gain of the ranker over first-valid selection<br>
-              <em>n<sub>10</sub></em>&nbsp;=&nbsp;112, <em>n<sub>01</sub></em>&nbsp;=&nbsp;64, exact McNemar
-              <em>p</em>&nbsp;&lt;&nbsp;0.001</div>
-          </div>
-          <div class="ai-gap">
-            <div class="ai-gap-val">&eta; = 0.40</div>
-            <div class="ai-gap-label">Selector efficiency: how much of the random-to-oracle gap the ranker closes<br>
-              95% CI 0.22&ndash;0.58</div>
-          </div>
-          <div class="ai-gap">
-            <div class="ai-gap-val">0.25</div>
-            <div class="ai-gap-label">Coverage gap left by the proposer: the oracle itself tops out at 0.75<br>
-              the larger measured bottleneck</div>
-          </div>
-        </div>
-
-        <p class="ai-chart-caption">
-          Top-1 success on identical candidate sets. Deterministic rules use paired intervals and McNemar tests
-          against first-valid; exact random uses a paired bootstrap. The 95% interval spans the preregistered modest
-          and principal-effect regions, so we claim a measurable ranking contribution and report its uncertainty
-          rather than treating its magnitude as precisely established.
-        </p>
-      </div>
-
-      <h3 class="title is-4 has-text-centered" style="margin-top:3.5rem">Component and interface diagnostics</h3>
-      <div class="ai-table-wrap">
-        <table class="ai-table">
-          <thead>
-            <tr>
-              <th class="ai-th-text" scope="col">Variant</th>
-              <th scope="col">T<sub>p</sub>/H</th>
-              <th scope="col">Pair-AUC &uarr;</th>
-              <th scope="col">NMSE 3/8 &darr;</th>
-              <th scope="col">AUROC enc. &uarr;</th>
-              <th scope="col">AUROC imag. &uarr;</th>
-              <th scope="col">AP/prev. &uarr;</th>
-              <th class="ai-col-avg" scope="col">&eta;</th>
-            </tr>
-          </thead>
+      <h3 class="sub" style="margin-top:2.2rem">Component and interface ablations <small>LIBERO-PRO Spatial</small></h3>
+      <div class="table-wrap">
+        <table class="tbl">
+          <thead><tr><th>Variant</th><th>T<sub>p</sub>/H</th><th>Pair-AUC &uarr;</th><th>NMSE 3/8 &darr;</th><th>AUROC enc. &uarr;</th><th>AUROC pred. &uarr;</th><th>Norm. AP pred. &uarr;</th><th class="col-avg">&eta;</th></tr></thead>
           <tbody>
-            <tr class="ai-ours"><th scope="row">Full system</th><td>3/8</td><td>0.70</td><td>0.35/0.60</td><td>0.78</td><td>0.72</td><td>1.40</td><td class="ai-col-avg">0.40</td></tr>
-            <tr><th scope="row">No horizon code</th><td>3/8</td><td class="ai-na">=</td><td>0.42/0.80</td><td class="ai-na">=</td><td>0.64</td><td>1.21</td><td class="ai-col-avg">0.25</td></tr>
-            <tr><th scope="row">Terminal head only</th><td>3/8</td><td class="ai-na">=</td><td class="ai-na">=</td><td>0.75</td><td>0.68</td><td>1.26</td><td class="ai-col-avg">0.25</td></tr>
-            <tr><th scope="row">Step head only</th><td>3/8</td><td class="ai-na">=</td><td class="ai-na">=</td><td>0.76</td><td>0.70</td><td>1.33</td><td class="ai-col-avg">0.30</td></tr>
-            <tr><th scope="row">Paired bridge alignment</th><td>3/8</td><td>0.78</td><td>0.33/0.57</td><td class="ai-na">=</td><td>0.73</td><td>1.42</td><td class="ai-col-avg">0.41</td></tr>
-            <tr><th scope="row">Matched horizon</th><td>8/8</td><td class="ai-na">=</td><td>0.36/0.48</td><td class="ai-na">=</td><td>0.74</td><td>1.44</td><td class="ai-col-avg">0.42</td></tr>
-            <tr><th scope="row">Mixed-verifier training</th><td>3/8</td><td class="ai-na">=</td><td class="ai-na">=</td><td>0.76</td><td>0.75</td><td>1.46</td><td class="ai-col-avg">0.42</td></tr>
+            <tr class="ours"><th>Full system</th><td>3/8</td><td>0.70</td><td>0.35/0.60</td><td>0.78</td><td>0.72</td><td>1.40</td><td class="col-avg">0.40</td></tr>
+            <tr><th>No horizon code</th><td>3/8</td><td>0.70</td><td>0.42/0.80</td><td>0.78</td><td>0.64</td><td>1.21</td><td class="col-avg">0.25</td></tr>
+            <tr><th>Terminal head only</th><td>3/8</td><td>0.70</td><td>0.35/0.60</td><td>0.75</td><td>0.68</td><td>1.26</td><td class="col-avg">0.25</td></tr>
+            <tr><th>Step head only</th><td>3/8</td><td>0.70</td><td>0.35/0.60</td><td>0.76</td><td>0.70</td><td>1.33</td><td class="col-avg">0.30</td></tr>
+            <tr><th>Paired bridge alignment</th><td>3/8</td><td>0.78</td><td>0.33/0.57</td><td>0.78</td><td>0.73</td><td>1.42</td><td class="col-avg">0.41</td></tr>
+            <tr><th>Matched horizon</th><td>8/8</td><td>&ndash;</td><td>0.36/0.48</td><td>0.78</td><td>0.74</td><td>1.44</td><td class="col-avg">0.42</td></tr>
+            <tr><th>Mixed-verifier training</th><td>3/8</td><td>0.70</td><td>0.35/0.60</td><td>0.76</td><td>0.75</td><td>1.46</td><td class="col-avg">0.42</td></tr>
           </tbody>
         </table>
       </div>
-      <p class="ai-table-note">
-        &ldquo;=&rdquo; marks cells identical to the full system by construction. The three interface corrections are
-        <strong>diagnostic</strong> improvements: end-to-end Position/Task success was not measured for those rows, so
-        they are not demonstrated policy gains. The no-horizon-code row is a single retraining run, a descriptive
-        architectural diagnostic rather than a seeded causal estimate.
-      </p>
+      <p class="note">The last three rows correct the train&ndash;test interface and have no matched end-to-end reruns.</p>
     </div>
   </section>
 
   <!-- Efficiency -->
-  <section class="section hero is-light" id="efficiency">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3 has-text-centered">Verification Is Not the Bottleneck</h2>
-      <p class="ai-section-intro">
-        Measured at K&nbsp;=&nbsp;3, H&nbsp;=&nbsp;8 on one RTX PRO 6000 in FP16. GPU values are means over 200 cycles
-        after 20 warmups; the proposer round trip is the mean of 60 requests.
-      </p>
-
-      <div class="ai-split">
-        <div class="ai-split-bar">
-          <div class="ai-split-local" style="width:0.154%"></div>
-          <div class="ai-split-remote"></div>
+  <section class="band alt" id="efficiency">
+    <div class="wrap">
+      <div class="head"><span class="kicker k5">Cost</span><h2>Local foresight is light; the proposer is the bottleneck</h2></div>
+      <p class="pull">The local verification stack takes <b>15.46&nbsp;ms (64.7&nbsp;Hz)</b> for K=3 candidates and H=8 steps. The <b>10.006&nbsp;s</b> proposer call limits the synchronous path to 0.10 decisions per second.</p>
+      <div class="two-col" style="margin-top:0">
+        <div>
+          <h3 class="sub">Local verification stack <small>mean ms per cycle</small></h3>
+          <div class="stack">
+            <i class="seg s1" style="--w:5.95" title="Encoder: 5.95 ms"></i>
+            <i class="seg s2" style="--w:4.38" title="Bridge: 4.38 ms"></i>
+            <i class="seg s3" style="--w:4.28" title="Program dynamics: 4.28 ms"></i>
+            <i class="seg s5" style="--w:0.85" title="Verifier: 0.85 ms"></i>
+          </div>
+          <ul class="stack-legend">
+            <li><i class="sw s1"></i><span>Encoder E<sub>&theta;</sub></span><b>5.95</b></li>
+            <li><i class="sw s2"></i><span>Bridge &phi;</span><b>4.38</b></li>
+            <li><i class="sw s3"></i><span>D<sub>prog</sub>, batched K=3</span><b>4.28</b></li>
+            <li><i class="sw s5"></i><span>Verifier R</span><b>0.85</b></li>
+            <li class="total">Local verification stack<b>15.46</b></li>
+          </ul>
         </div>
-        <div class="ai-split-legend">
-          <span>Local verification stack: <b>15.46 ms</b> &middot; 0.154% of the decision path</span>
-          <span>Remote proposer round trip: <b>10 006 ms</b> &middot; 99.846%</span>
+        <div>
+          <h3 class="sub">Planning cost <small>K=3, H=8, RTX PRO 6000, FP16</small></h3>
+          <div class="table-wrap">
+            <table class="tbl compact">
+              <thead><tr><th>Stage</th><th>Mean ms</th><th>Rate (Hz)</th><th>Share</th><th>Params (M)</th></tr></thead>
+              <tbody>
+                <tr><th>Local verification stack</th><td>15.46</td><td>64.7</td><td>0.154%</td><td>198.3</td></tr>
+                <tr><th>Proposer (VLM, RTT)</th><td>10006.00</td><td>0.100</td><td>99.846%</td><td>remote</td></tr>
+                <tr><th>Decision path (sync.)</th><td>10021.46</td><td>0.100</td><td>100%</td><td>&ndash;</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="note">Local means use 200 cycles after 20 warmups; proposer round trip uses 60 requests.</p>
         </div>
       </div>
-
-      <div class="ai-table-wrap" style="margin-top:2rem">
-        <table class="ai-table">
-          <caption class="ai-caption">Measured planning cost at K = 3, H = 8</caption>
-          <thead>
-            <tr>
-              <th class="ai-th-text" scope="col">Stage</th>
-              <th scope="col">Mean ms</th>
-              <th scope="col">Rate (Hz)</th>
-              <th scope="col">Share</th>
-              <th scope="col">Params (M)</th>
-              <th scope="col">Peak GB</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><th scope="row">Encoder <em>E<sub>&theta;</sub></em></th><td>5.95</td><td class="ai-na">&ndash;</td><td>0.059%</td><td>93.4</td><td>0.54<sup>&dagger;</sup></td></tr>
-            <tr><th scope="row">Bridge <em>&phi;</em></th><td>4.38</td><td class="ai-na">&ndash;</td><td>0.044%</td><td>38.6</td><td>0.17<sup>&dagger;</sup></td></tr>
-            <tr><th scope="row"><em>D</em><sub>prog</sub> (batched K = 3)</th><td>4.28</td><td class="ai-na">&ndash;</td><td>0.043%</td><td>65.9</td><td>0.40<sup>&dagger;</sup></td></tr>
-            <tr><th scope="row">Verifier <em>R</em></th><td>0.85</td><td class="ai-na">&ndash;</td><td>0.008%</td><td>&lt; 1</td><td>&lt; 0.01<sup>&dagger;</sup></td></tr>
-            <tr class="ai-ours"><th scope="row">Local verification stack</th><td>15.46</td><td>64.7</td><td>0.154%</td><td>198.3</td><td>1.51<sup>&Dagger;</sup></td></tr>
-            <tr><th scope="row">Proposer (VLM, round trip)</th><td>10 006.00</td><td>0.100</td><td>99.846%</td><td class="ai-na">remote</td><td class="ai-na">remote</td></tr>
-            <tr><th scope="row">Decision path (synchronous)</th><td>10 021.46</td><td>0.100</td><td>100%</td><td class="ai-na">&ndash;</td><td>1.51<sup>&Dagger;</sup></td></tr>
-            <tr><th scope="row">Tracker / env. step<sup>&sect;</sup></th><td>0.52</td><td class="ai-na">&ndash;</td><td class="ai-na">excluded</td><td class="ai-na">n/a</td><td class="ai-na">n/a</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="ai-table-note">
-        <sup>&dagger;</sup>Module-isolated peak; these entries are not additive. <sup>&Dagger;</sup>Joint peak with all
-        local weights resident and peak activations. <sup>&sect;</sup>Per low-level environment step, excluded from
-        decision-path arithmetic because commit duration varies. The cached instruction encoder, one-time
-        parsing and preprocessing, and remote proposer parameters and memory are excluded. These are
-        planning-throughput figures rather than motor-control rates.
-      </p>
-
-      <figure class="ai-figure">
-        <img src="static/images/fig_cost.png" class="ai-zoomable"
-             alt="Horizontal bar chart on a log scale comparing per-cycle latency: encoder 5.95 ms, bridge 4.38 ms, program dynamics 4.28 ms, verifier 0.85 ms, and the remote VLM agent at 10006 ms">
-        <figcaption>
-          <strong>Per-cycle latency on a log scale.</strong> The four local modules sum to 15.5&nbsp;ms; the remote
-          agent call is nearly three orders of magnitude larger. Foresight is cheap relative to proposal.
-        </figcaption>
-      </figure>
     </div>
   </section>
 
   <!-- Auditability -->
-  <section class="section" id="auditability">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3 has-text-centered">An Auditable Decision Record</h2>
-      <p class="ai-section-intro">
-        The explicit program boundary leaves artifacts that reactive action generation does not expose directly.
-      </p>
-
-      <figure class="ai-figure" style="margin-top:0">
-        <img src="static/images/interpretability_vs_blackbox.png" class="ai-zoomable"
-             alt="Side-by-side comparison: a low-level VLA policy emits opaque joint velocities with no explainable trace, while the program-generating approach emits inspectable source code in which the failing coordinate literal can be read off directly">
-        <figcaption>
-          <strong>Decision auditability enabled by the explicit program interface.</strong> Illustrative diagnostic trace with <em>K</em>&nbsp;=&nbsp;4 and four replan records, separate from the reported <em>K</em>&nbsp;=&nbsp;3, <em>N</em>&nbsp;=&nbsp;4 evaluation. A reactive VLA exposes only an action vector with no inspectable trace, whereas our system records ordered candidate programs, AST validity, imagined latent consequences, verifier scores, and the selected commitment before execution. In panel (b), every program parses, yet replans retain the same <em>z</em>&nbsp;=&nbsp;0.952 grasp height and <em>y</em>&nbsp;=&nbsp;&minus;0.45 pull target while varying only approach depth. The record localizes a shared geometric grounding error hidden in the action-vector view, showing that explicit literals need not re-ground correctly.
-        </figcaption>
+  <section class="band" id="auditability">
+    <div class="wrap">
+      <div class="head"><span class="kicker k6">Auditability</span><h2>A decision record you can read</h2></div>
+      <figure class="fig" style="margin-top:0">
+        <img src="static/images/interpretability_vs_blackbox.png" class="zoom" loading="lazy"
+             alt="A low-level VLA action vector next to AGI's program trace with replan records">
+        <figcaption>Illustrative diagnostic trace with K=4 and four replan records, separate from the reported K=3, N=4 evaluation.
+          The low-level VLA exposes only an action vector.</figcaption>
       </figure>
-
-      <p class="ai-table-note" style="text-align:center;max-width:760px;margin:0 auto">
-        This is a concrete systems property of the interface, not a claim about human interpretability. No user study
-        was run.
-      </p>
-
-      <h3 class="title is-4 has-text-centered" style="margin-top:3.5rem">Evidence Boundaries</h3>
-      <div class="ai-limits">
-        <div class="ai-limit">
-          <h3>The 0.12 gain is not all ranking</h3>
-          <p>The one-shot-to-full difference combines candidate count, replanning, imagination and ranking. Only the
-            same-candidate fork isolates selection, and it yields +0.06.</p>
-        </div>
-        <div class="ai-limit">
-          <h3>Proposal is the larger bottleneck</h3>
-          <p>The remaining oracle and coverage gaps are 0.12 and 0.25. Candidate generation, not ranking, is where the
-            most headroom sits.</p>
-        </div>
-        <div class="ai-limit">
-          <h3>Grounding error is not isolated</h3>
-          <p>The proposer writes the robot-base-frame literals and no learned converter modifies them. We do not
-            report a literal-to-ground-truth coordinate-error distribution, so Position-axis claims are made at the
-            interface level.</p>
-        </div>
-        <div class="ai-limit">
-          <h3>Robustness is a trade-off</h3>
-          <p>Spatial-Semantic success stays at 0.73, below every displayed baseline. The evidence supports a
-            redistribution of robustness, not uniform superiority.</p>
-        </div>
-        <div class="ai-limit">
-          <h3>Train and test interfaces differ</h3>
-          <p>Training supervises three latent steps while planning queries eight, and the dynamics head is trained on
-            an action surrogate but queried on the bridge. The substitution is empirical.</p>
-        </div>
-        <div class="ai-limit">
-          <h3>Correction rows are diagnostic only</h3>
-          <p>The interface corrections and the no-horizon-code row lack matched end-to-end reruns or multi-seed
-            intervals.</p>
-        </div>
+      <div class="links" style="margin-top:1.6rem">
+        <a class="lcard" href="rollouts.html"><span class="arrow">&rarr;</span><b>LIBERO-X rollout browser</b>
+          <span>Supplementary: successful episodes from a Level 1 sweep, a different checkpoint from the paper's table.</span></a>
       </div>
     </div>
   </section>
 
   <!-- BibTeX -->
-  <section class="section hero is-light" id="bibtex">
-    <div class="container is-max-desktop content">
-      <div class="bibtex-header">
-        <h2 class="title">BibTeX</h2>
-        <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
-          <i class="fas fa-copy"></i>
-          <span class="copy-text">Copy</span>
-        </button>
-      </div>
-      <!-- TODO: replace with the real entry once the paper is accepted and de-anonymized. -->
-      <pre id="bibtex-code"><code>@inproceedings{anonymous2027agentic,
+  <section class="band alt" id="bibtex">
+    <div class="wrap">
+      <div class="head"><span class="kicker k2">Cite</span><h2>BibTeX</h2></div>
+      <div class="bib">
+        <button class="copy" id="copy-bib" type="button">Copy</button>
+        <pre id="bib-code">@inproceedings{anonymous2027agentic,
 title     = {AGI: Agentic Intelligence and Latent Lookahead for Robust Manipulation},
 author    = {Anonymous},
 booktitle = {IEEE International Conference on Robotics and Automation (ICRA)},
 year      = {2027},
 note      = {Under review}
-}</code></pre>
-      <p class="ai-table-note">
-        Placeholder entry. Author names are withheld while the paper is under anonymous review.
-      </p>
+}</pre>
+      </div>
     </div>
   </section>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="content has-text-centered">
-        <p>
-          Page template adapted from <a href="https://nerfies.github.io" target="_blank" rel="noopener">Nerfies</a>,
-          licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>.
-        </p>
-      </div>
-    </div>
-  </footer>
 </main>
 
-<!-- Scroll to top -->
-<button class="scroll-to-top" onclick="scrollToTop()" aria-label="Scroll back to top">
-  <i class="fas fa-arrow-up"></i>
-</button>
-
-<!-- Lightbox -->
-<div class="ai-lightbox" id="ai-lightbox" role="dialog" aria-modal="true" aria-label="Enlarged figure">
-  <button class="ai-lightbox-close" id="ai-lightbox-close" aria-label="Close">&times;</button>
-  <img id="ai-lightbox-img" src="" alt="">
-  <p class="ai-lightbox-caption" id="ai-lightbox-caption"></p>
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged figure">
+  <button class="lightbox-close" id="lightbox-close" aria-label="Close">&times;</button>
+  <img id="lightbox-img" src="" alt="">
 </div>
-
 </body>
 </html>
